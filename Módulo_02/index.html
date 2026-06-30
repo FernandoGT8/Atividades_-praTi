@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laraflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <img class="logo" src="Imagens para o site/watermarked_img_7623017582704146516.jpg" alt="Laraflix">
+            </a>
+            <div class="header-actions">
+                <button class="btn btn-primary">Entrar</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Filmes, séries e muito mais, sem limites</h1>
+            <p class="subtitle">A partir de R$ 9,90. Cancele quando quiser.</p>
+            <form class="cta-form" id="registrationForm" novalidate>
+                <h3>Quer assistir? Informe seu email para criar ou reiniciar sua assinatura.</h3>
+                <div class="form-group-container">
+                    <div class="form-group">
+                        <input type="email" id="userEmail" placeholder=" " required>
+                        <label for="userEmail">Email</label>
+                        <button type="button" id="btnSubmitCadastro" class="btn animated-border-btn">
+                            <span class="btn-content">
+                                Vamos lá
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div id="emailError" class="error-message"></div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <p class="footer-top">Dúvidas? Ligue para <a href="tel:08001234567">0800 123 4567</a></p>
+
+            <ul class="footer-links">
+                <li><a href="#">Perguntas frequentes</a></li>
+                <li><a href="#">Central de Ajuda</a></li>
+                <li><a href="#">Conta</a></li>
+                <li><a href="#">Media Center</a></li>
+                <li><a href="#">Relações com investidores</a></li>
+                <li><a href="#">Carreiras</a></li>
+                <li><a href="#">Resgatar cartão pré-pago</a></li>
+                <li><a href="#">Comprar cartão pré-pago</a></li>
+                <li><a href="#">Formas de assistir</a></li>
+                <li><a href="#">Termos de Uso</a></li>
+                <li><a href="#">Privacidade</a></li>
+                <li><a href="#">Preferências de cookies</a></li>
+                <li><a href="#">Informações corporativas</a></li>
+                <li><a href="#">Entre em contato</a></li>
+                <li><a href="#">Teste de velocidade</a></li>
+                <li><a href="#">Avisos legais</a></li>
+                <li><a href="#">Só na Laraflix</a></li>
+            </ul>
+
+            <p class="footer-country">Laraflix Brasil</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

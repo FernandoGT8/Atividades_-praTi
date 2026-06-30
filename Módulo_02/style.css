@@ -1,0 +1,379 @@
+/* RESET E VARIÁVEIS */
+:root {
+    --primary-color: #e50914;
+    --primary-hover: #c40812;
+    --bg-dark: #000000;
+    --text-color: #ffffff;
+    --text-muted: #b3b3b3;
+    --input-bg: rgba(22, 22, 22, 0.7);
+    --input-border: rgba(128, 128, 128, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+.main-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 6rem;
+    object-fit: contain;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.language-select {
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+    border: 1px solid var(--input-border);
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+/* BOTÕES */
+.btn {
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 0.25rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 43.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 51rem;
+    width: 100%;
+    margin-top: 3.5rem;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -0.05rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* FORMULÁRIO CTA */
+.cta-form h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 44rem;
+    margin: 0 auto;
+    position: relative;
+}
+
+.form-group autocomplete-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.form-group input {
+    flex-grow: 1;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    padding: 1.5rem 1rem 0.5rem 1rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;
+}
+
+.form-group input:focus {
+    outline: 2px solid var(--text-color);
+}
+
+/* Floating Label Logic */
+.form-group label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-size: 1rem;
+}
+
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+    top: 0.5rem;
+    transform: translateY(0);
+    font-size: 0.75rem;
+}
+
+/* BOTÃO COM BORDA ANIMADA */
+.animated-border-btn {
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    background: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Força o botão a ter uma altura definida pelo conteúdo + a borda desejada */
+    height: 100%; 
+}
+
+.animated-border-btn::before {
+    content: '';
+    position: absolute;
+    height: 350%;
+    width: 350%;
+    top: 50%;
+    left: 50%;
+    background: conic-gradient(
+        transparent,
+        transparent,
+        transparent,
+        var(--primary-color)
+    );
+    animation: rotate-btn 3s linear infinite;
+}
+
+.animated-border-btn .btn-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+    margin: 7px; 
+    flex-grow: 1;
+    width: calc(100% - 14px);  /* Força o desconto exato da margem na largura */
+    height: calc(100% - 14px); /* Força o desconto exato da margem na altura */
+    
+    padding: 1rem 2rem;
+    border-radius: calc(0.25rem - 2px);
+    transition: background-color 0.2s ease;
+}
+
+/* Para a animação e esconde o gradiente cônico */
+.animated-border-btn:hover::before {
+    animation-play-state: paused;
+    background: transparent; 
+}
+
+/* Força a base do botão a adotar a cor de hover */
+.animated-border-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Garante que o miolo também adote a mesma cor de hover */
+.animated-border-btn:hover .btn-content {
+    background-color: var(--primary-hover);
+}
+
+/* Animação de rotação corrigida para o escopo do botão */
+@keyframes rotate-btn {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* AJUSTE DE RESPONSIVIDADE CORRIGIDO */
+@media (max-width: 740px) {
+    .animated-border-btn {
+        width: 100%;
+    }
+    .animated-border-btn .btn-content {
+        font-size: 1.25rem;
+        padding: 0.75rem;
+        width: calc(100% - 14px);
+        height: calc(100% - 14px);
+    }
+}
+
+.btn-cta:hover {
+    background-color: var(--primary-hover);
+}
+
+/* FOOTER */
+.main-footer {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 4.5rem 2rem 2rem 2rem;
+    border-top: 8px solid #222;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    margin-bottom: 2rem;
+}
+
+.footer-top a {
+    color: var(--text-muted);
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-lang {
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.footer-country {
+    font-size: 0.75rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 740px) {
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content .subtitle { font-size: 1.25rem; }
+    .form-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .form-group label {
+        top: 25%;
+    }
+    .btn-cta {
+        padding: 0.75rem;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.form-group-container {
+    max-width: 44rem;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.error-message {
+    color: #eb5757;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+    display: none;
+}
