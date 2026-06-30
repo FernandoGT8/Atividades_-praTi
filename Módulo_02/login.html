@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laraflix - Entrar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('Imagens para o site/watermarked_img_7623017582704146516.jpg') no-repeat center center/cover;
+        }
+        .login-card {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 4rem;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 450px;
+        }
+        .login-card h2 { margin-bottom: 2rem; font-size: 2rem; }
+        .input-box { width: 100%; padding: 1rem; background: #333; border: none; border-radius: 4px; color: #fff; margin-bottom: 1rem; font-size: 1rem; }
+        .btn-login { width: 100%; padding: 1rem; background: var(--primary-color); border: none; color: #fff; font-size: 1rem; font-weight: bold; border-radius: 4px; cursor: pointer; }
+        .btn-login:hover { background: var(--primary-hover); }
+        .error-login { color: #eb5757; font-size: 0.875rem; margin-top: 0.5rem; display: none; }
+    </style>
+</head>
+<body class="login-body">
+
+    <div class="login-card">
+        <h2>Entrar</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" class="input-box" placeholder="Email cadastrado" required>
+            <button type="submit" class="btn-login">Entrar</button>
+            <div id="loginError" class="error-login">Este e-mail não foi cadastrado no "Vamos lá".</div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputEmail = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const savedEmail = localStorage.getItem('laraflix_user_email');
+
+            // Validação estrita contra o localStorage
+            if (savedEmail && inputEmail === savedEmail.toLowerCase()) {
+                window.location.href = 'catalogo.html';
+            } else {
+                const errDiv = document.getElementById('loginError');
+                errDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

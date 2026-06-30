@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laraflix - Catálogo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .catalog-body {
+            background: #111;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #222;
+            padding-bottom: 1rem;
+        }
+
+        /* Mantém a estilização da logo como link idêntica ao h1 anterior */
+        .logo-link {
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .logo-link h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .movie-card {
+            background: #181818;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .movie-info {
+            padding: 1rem;
+        }
+
+        .movie-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-info span {
+            color: #46d369;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+
+<body class="catalog-body">
+
+    <header class="catalog-header">
+    <a href="#" id="logoLaraflix" style="text-decoration: none; cursor: pointer !important; display: inline-block; z-index: 9999;">
+        <img src="../Módulo_02/Imagens para o site/9da54403-f4cc-4ac4-a737-8285f5c12efc.jpg" alt="Laraflix" style="height: 40px; display: block; pointer-events: none;">
+    </a>
+    <button onclick="logout()" class="btn btn-primary" style="padding: 0.5rem 1rem; z-index: 9999;">Sair</button>
+</header>
+
+    <h2>Filmes em Alta</h2>
+    <div class="movies-grid" id="moviesGrid">
+    </div>
+
+    <script>
+    if (!localStorage.getItem('laraflix_user_email')) {
+        window.location.href = 'login.html';
+    }
+
+    const TMDB_API_KEY = '106dc008b4f7f8f27a700102b5c5b10b';
+    const TMDB_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}&language=pt-BR`;
+
+    async function fetchMovies() {
+        try {
+            const response = await fetch(TMDB_URL);
+            if (!response.ok) throw new Error(`API status: ${response.status}`);
+            const data = await response.json();
+            renderGrid(data.results);
+        } catch (error) {
+            console.warn('Usando catálogo de contingência estável Netflix CDN:', error.message);
+            const filmesContingencia = [
+                { title: 'Stranger Things', poster_path: 'https://assets.nflxext.com/us/boxshots/ghd/80057281.jpg', vote_average: 8.8 },
+                { title: 'The Witcher', poster_path: 'https://assets.nflxext.com/us/boxshots/ghd/80189685.jpg', vote_average: 8.1 },
+                { title: 'Breaking Bad', poster_path: 'https://assets.nflxext.com/us/boxshots/ghd/70143836.jpg', vote_average: 9.5 },
+                { title: 'Round 6', poster_path: 'https://assets.nflxext.com/us/boxshots/ghd/81040344.jpg', vote_average: 8.3 },
+                { title: 'La Casa de Papel', poster_path: 'https://assets.nflxext.com/us/boxshots/ghd/80192098.jpg', vote_average: 8.2 },
+                { title: 'Dark', poster_path: 'https://assets.nflxext.com/us/boxshots/ghd/80100172.jpg', vote_average: 8.7 }
+            ];
+            renderGrid(filmesContingencia);
+        }
+    }
+
+    function renderGrid(movies) {
+        const grid = document.getElementById('moviesGrid');
+        grid.innerHTML = movies.map(movie => {
+            const imageSrc = movie.poster_path.startsWith('http')
+                ? movie.poster_path
+                : `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+            return `
+                <div class="movie-card">
+                    <img src="${imageSrc}" alt="${movie.title}" onerror="this.src='https://placehold.co/500x750/181818/FFF?text=${encodeURIComponent(movie.title)}'">
+                    <div class="movie-info">
+                        <h3>${movie.title}</h3>
+                        <span>Nota: ${movie.vote_average.toFixed(1)}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function logout() {
+        localStorage.removeItem('laraflix_user_email');
+        window.location.href = 'index.html';
+    }
+
+    // LISTENER DA LOGO: Insira este bloco aqui para gerenciar o clique no topo
+    const logo = document.getElementById('logoLaraflix');
+    if (logo) {
+        logo.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Inicializa a execução
+    fetchMovies();
+</script>
+</body>
+
+</html>
