@@ -377,3 +377,85 @@ body {
     padding-left: 0.5rem;
     display: none;
 }
+
+/* SEÇÃO DE CONTATO E SOBRE */
+.contact-section {
+    background-color: #141414;
+    padding: 5rem 2rem;
+    border-top: 8px solid #222;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 38rem;
+    margin: 0 auto;
+}
+
+.contact-section h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.contact-section p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.contact-group input,
+.contact-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: #333;
+    border: none;
+    border-radius: 0.25rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.contact-group input:focus,
+.contact-group textarea:focus {
+    outline: 2px solid var(--text-color);
+    background: #444;
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+.contact-success-msg {
+    display: none;
+    color: #27ae60;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* CORREÇÃO DO BUG DO MOBILE (LABEL DESALINHADO) */
+@media (max-width: 740px) {
+    .form-group label {
+        top: 1.5rem !important; /* Ajusta o alinhamento quando o form vira coluna */
+        transform: translateY(0) !important;
+    }
+    .form-group input:focus ~ label,
+    .form-group input:not(:placeholder-shown) ~ label {
+        top: 0.25rem !important;
+    }
+}

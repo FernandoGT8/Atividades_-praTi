@@ -87,4 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
             emailInput.style.outline = 'none';
         });
     }
+    // COMPORTAMENTO DO FORMULÁRIO DE CONTATO (MÍNIMO EXIGIDO)
+    const contactForm = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccess');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simula o envio de forma limpa na UI
+            contactSuccess.textContent = 'Mensagem enviada com sucesso! Obrigado pelo contato.';
+            contactSuccess.style.display = 'block';
+            contactForm.reset();
+            
+            // Remove a mensagem após 5 segundos
+            setTimeout(() => {
+                contactSuccess.style.display = 'none';
+            }, 5000);
+        });
+    }
 });
