@@ -214,8 +214,8 @@ body {
 .animated-border-btn::before {
     content: '';
     position: absolute;
-    height: 350%;
-    width: 350%;
+    width: 150vw; /* Garante que o elemento seja maior que a largura de qualquer celular */
+    height: 150vw; /* Mantém a proporção estritamente quadrada */
     top: 50%;
     left: 50%;
     background: conic-gradient(
